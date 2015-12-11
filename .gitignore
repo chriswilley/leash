@@ -1,0 +1,8 @@
+.DS_Store
+.sass-cache/
+archive/
+instance/
+leash/static/src/
+*.pyc
+config_sample.py.gz
+scratchpad

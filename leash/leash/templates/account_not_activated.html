@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Leash -- Activate Your Account{% endblock %}
+
+{% block headextra %}
+<link href="{{ url_for('static', filename='cover.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+                            <h1 style="display: block;" class="text-center">Your Account Is Not Yet Activated</h1>
+                            <h5>You must activate your account before you can use all of the site's features, such as adopting puppies or requesting a password reset. Check your email (including your Spam folder) for a message from us with an activation link.</h5>
+                            <h4>If the link has expired or you can't find the email,<br /><a href="{{ url_for('auth.activate_account', token=token) }}?next={{ next }}">send another one</a>.</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

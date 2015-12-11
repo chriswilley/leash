@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block title %}Leash -- Da Puppies{% endblock %}
+
+{% block headextra %}
+<link href="{{ url_for('static', filename='starter-template.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href="{{ url_for('static', filename='dashboard.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 sidebar">
+                    <h4 style="display: block;">Our Shelters</h4>
+                    <ul class="nav nav-sidebar">
+                        {% for s in shelters %}
+                        <li{% if s.name == shelter %} class="active"{% endif %}>
+                            <a href="{{ url_for('home.showPuppies', shelter_id=s.id) }}">{{ s.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 main">
+                    <div class="row"><div class="col-sm-12">{% include 'message_alerts.html' %}</div></div>
+                    <h1 class="page-header">{{ shelter }}&nbsp;&nbsp;<small><a href="#" data-toggle="modal" data-target="#shelterinfo"><i class="fa fa-info-circle" id="shelterinfolink"></i></a></small></h1>
+                    <div class="row placeholders">
+                    {% if not puppies %}
+                        <div class="col-xs-6 col-sm-3 placeholder">
+                            <h3>No puppies yet!</h3>
+                        </div>
+                    {% endif %}
+                    {% for puppy in puppies %}
+                        <div class="col-xs-6 col-sm-3 placeholder">
+                            <div class="puppy-overlay text-center"><span><i class="fa fa-info-circle puppyinfo-button" data-tip="tooltip" title="View {{ puppy.name|apostrophe }} Info" data-trigger="hover" data-toggle="modal" data-target="#puppyinfo" data-info-url="{{ url_for('home.puppyInfo', puppy_id=puppy.id) }}"></i></span></div>
+                            <img src="{{ url_for('home.media', filename=puppy.picture) }}" class="img-responsive">
+                            <h4>{{ puppy.name }}</h4>
+                            <span class="text-muted">{{ puppy.breed }}{% if puppy.date_of_birth %}<br />{{ puppy.date_of_birth|agetext }}{% endif %}</span>
+                        </div>
+                        {% if (loop.index % 4 == 0) %}
+                    </div>
+                    <div class="row placeholders">
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="shelterinfo">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h2 class="modal-title" id="title"></h2>
+                    </div>
+                    <div class="modal-body">
+                        <div id="address"></div>
+                        <div id="email"></div>
+                        <div id="website"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="puppyinfo">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h2 class="modal-title" id="title"></h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div id="picture"></div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h3>About <span id="name"></span></h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div id="breedgender"></div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div id="dob"></div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div id="weight"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div id="description"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div id="needs"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <p>&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <form action="." id="puppyadoptform"><button class="btn btn-primary btn-lg">Adopt Me!</button></form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block footextra %}
+        <script>
+        $(document).on('click', '#shelterinfolink', function (event) {
+            $.ajax({
+                method: 'GET',
+                url: '{{ url_for("home.shelterInfo", shelter_id=shelter_id) }}',
+                dataType: 'json',
+                success: function(data, textStatus, jqXHR) {
+                    s = data['Shelter'];
+                    $('#shelterinfo').find('#title').html(s['name']);
+                    sAddress = s['address'];
+                    if (sAddress) {
+                        aStr = '<h4>Address:</h4><blockquote>' + sAddress + '<br/ >' + s['city'] + ', ' + s['state'] + ' ' + s['zip'] + '<br /><small>(<a href="https://www.google.com/maps/place/' + sAddress + '+' + s['city'] + '+' + s['state'] + '+' + s['zip'] + '" target="_blank">map & directions</a>)</small></blockquote>';
+                        $('#shelterinfo').find('#address').html(aStr);
+                    }
+                    sEmail = s['email'];
+                    if (sEmail) {
+                        eStr = '<h4>Email:</h4><blockquote><a href="mailto:' + sEmail + '">' + sEmail + '</a></blockquote>';
+                        $('#shelterinfo').find('#email').html(eStr);
+                    }
+                    sWebsite = s['website'];
+                    if (sWebsite) {
+                        wStr = '<h4>Website:</h4><blockquote><a href="' + sWebsite + '">' + sWebsite + '</a></blockquote>';
+                        $('#shelterinfo').find('#website').html(wStr);
+                    }
+                }
+            });
+        });
+
+        $(document).on('click', '.puppyinfo-button', function (event) {
+            $.ajax({
+                method: 'GET',
+                url: $(this).data('info-url'),
+                dataType: 'json',
+                success: function(data, textStatus, jqXHR) {
+                    p = data['Puppy']
+                    $('#puppyinfo').find('#title').html(p['name']);
+                    $('#puppyinfo').find('#name').html(p['name']);
+                    picStr = '<img src="' + p['picture'] + '" class="img-responsive" />';
+                    $('#puppyinfo').find('#picture').html(picStr);
+                    pBreed = p['breed'];
+                    pGender = p['gender'];
+                    if (pBreed || pGender) {
+                        pBGStr = '<strong>';
+                        if (pGender) {
+                            pBGStr += pGender.charAt(0).toUpperCase() + pGender.slice(1);
+                        }
+                        if (pBreed) {
+                            pBGStr += ' ' + pBreed.charAt(0).toUpperCase() + pBreed.slice(1);
+                        }
+                        pBGStr += '</strong>';
+                        $('#puppyinfo').find('#breedgender').html(pBGStr);
+                    }
+                    pDOB = p['dob'];
+                    if (pDOB) {
+                        dobStr = '<strong>Birthdate:</strong> ' + pDOB;
+                        $('#puppyinfo').find('#dob').html(dobStr);
+                    }
+                    pWeight = p['weight'];
+                    if (pDOB) {
+                        wStr = '<strong>Weight:</strong> ' + pWeight + '&nbsp;lbs.';
+                        $('#puppyinfo').find('#weight').html(wStr);
+                    }
+                    pDesc = p['description'];
+                    if (pDesc) {
+                        descStr = '<strong>Description:</strong><br />' + pDesc;
+                        $('#puppyinfo').find('#description').html(descStr);
+                    }
+                    pNeeds = p['needs'];
+                    if (pNeeds) {
+                        nStr = '<strong>Special Needs:</strong><br />' + pNeeds;
+                        $('#puppyinfo').find('#needs').html(nStr);
+                    }
+                    $('#puppyadoptform').attr('action', '/puppy/' + p['id'] + '/adopt')
+                }
+            });
+        });
+        </script>
+        <script>
+            $('[data-tip="tooltip"]').tooltip();
+        </script>
+{% endblock %}

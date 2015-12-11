@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Leash -- About Leash{% endblock %}
+
+{% block headextra %}
+<link href="{{ url_for('static', filename='cover.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div class="row">
+                    <div class="container">
+                        <h1 style="display: block;" class="text-center">About Leash</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container pg-empty-placeholder center-block">
+                        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 text-left">
+                            <h4>What is this?</h4>
+                            <p>Leash is a site developed using Flask as part of my work toward a Nanodegree in Full Stack Web Development offered by Udacity. The site enables a network of animal shelters to display pets (specifically puppies in this project) to potential adopters. The site offers pretty comprehensive functionality, including:</p>
+                            <ul>
+                                <li>Ability to add, edit and remove puppies and shelters from the database.</li>
+                                <li>Ability to self-register as an adopter.</li>
+                                <li>Ability to adopt a puppy online.</li>
+                                <li>Function to evenly distribute puppies across shelters.</li>
+                                <li>Administrative functions to add, edit and remove users.</li>
+                                <li>Three distinct user roles:
+                                    <ul>
+                                        <li>Adopter/general public</li>
+                                        <li>Shelter operator</li>
+                                        <li>Administrator</li>
+                                    </ul>
+                                </li>
+                                <li>Ability to upload photos of puppies.</li>
+                                <li>Email functions that enable registering as a user and resetting a forgotten password.</li>
+                                <li>Integration with Gravatar.</li>
+                                <li>Complete set of unit tests to ensure a working application.</li>
+                                <li>Custom error logging.</li>
+                            </ul>
+                            <p>This is a working app and is open source, so <a href="https://github.com/chriswilley/leash">feel free to use</a>!</p>
+                            <p>&nbsp;</p>
+                            <h4>Shout Outs</h4>
+                            <p>This site was developed using some third party add-ons in addition to Flask and some Flask extensions. Specifically:</p>
+                            <ul>
+                                <li><a href="http://www.jquery-bootgrid.com/">jQuery Bootgrid</a></li>
+                                <li>Twitter's <a href="https://twitter.github.io/typeahead.js/">typeahead.js</a></li>
+                                <li><a href="https://github.com/eternicode/bootstrap-datepicker">bootstrap-datepicker</a></li>
+                            </ul>
+                            <p>The Leash logo was made using an icon from the <a href="https://thenounproject.com/">Noun Project</a> (leash by Denora Daujatas from the Noun Project).</p>
+                            <p>Puppy sample images courtesy of <a href="https://unsplash.com/">Unsplash</a>.</p>
+                            <p>Bootstrap, FontAwesome and jQuery were also used, but doesn't that kinda go without saying these days?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

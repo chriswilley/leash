@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Leash -- Sign Up{% endblock %}
+
+{% block headextra %}
+<link href="{{ url_for('static', filename='cover.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+                            <h1 style="display: block;" class="text-center">Create a Leash Account</h1>
+                            <h5>In order to adopt a puppy, we need to have you create an account on our site. You can also sign in using Google+ or Facebook.</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container pg-empty-placeholder center-block">
+                        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+                            <form role="form" action="{{ url_for('auth.signup') }}" method="POST">
+                                <div class="form-group">
+                                    {{ form.email.label }}: {{ form.email(class="form-control") }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.password.label }}: {{ form.password(class="form-control") }}
+                                    {{ form.csrf_token }}
+                                </div>
+                                <button type="submit" class="btn btn-primary">Sign Up</button>&nbsp;<a href="{{ url_for('home.leashHome') }}" class="btn btn-default">Cancel</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+                            <p>&nbsp;</p>
+                            <h4>Already have an account? <a href="{{ url_for('auth.login') }}?next={{ request.args.get('next') }}">Log in now</a>!</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block title %}Leash -- Add/Edit Puppy{% endblock %}
+
+{% block headextra %}
+<link href="{{ url_for('static', filename='cover.css') }}" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block adminnavbar %}admin {% endblock %}
+
+{% block body %}
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                {% include 'message_alerts.html' %}
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+                            <h1 style="display: block;" class="text-center">{{ form_header }}</h1>
+                            <p>&nbsp;</p>
+                            {% include 'form_errors.html' %}
+                            <form class="form-horizontal" enctype="multipart/form-data" action="{{ form_action }}" method="POST">
+                            <div class="form-group{% if form.name.flags.required %} required{% endif %}">
+                                {{ form.name.label(class="col-sm-3 control-label") }}
+                                <div class="col-sm-9">
+                                    {{ form.name(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="form-group{% if form.gender.flags.required %} required{% endif %}">
+                                {{ form.gender.label(class="col-sm-3 control-label") }}
+                                <div class="col-sm-9">
+                                    {{ form.gender(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="form-group{% if form.breed.flags.required %} required{% endif %}">
+                                {{ form.breed.label(class="col-sm-3 control-label") }}
+                                <div class="col-sm-9">
+                                    {{ form.breed(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="form-group{% if form.weight.flags.required %} required{% endif %}">
+                                {{ form.weight.label(class="col-sm-3 control-label") }}
+                                <div class="col-sm-9">
+                                    {{ form.weight(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="form-group{% if form.date_of_birth.flags.required %} required{% endif %}">
+                                {{ form.date_of_birth.label(class="col-sm-3 control-label") }}
+                                <div class="col-sm-9">
+                                    {{ form.date_of_birth(class="form-control datepicker") }}
+                                </div>
+                            </div>
+                            <div class="form-group{% if form.description.flags.required %} required{% endif %}">
+                                {{ form.description.label(class="col-sm-3 control-label") }}
+                                <div class="col-sm-9">
+                                    {{ form.description(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="form-group{% if form.special_needs.flags.required %} required{% endif %}">
+                                {{ form.special_needs.label(class="col-sm-3 control-label") }}
+                                <div class="col-sm-9">
+                                    {{ form.special_needs(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="form-group{% if form.picture.flags.required %} required{% endif %}">
+                                {{ form.picture.label(class="col-sm-3 control-label") }}
+                                <div class="col-sm-9">
+                                    {% if puppy and puppy.picture %}
+                                    <img height="60" class="pull-left" src="{{ url_for('home.media', filename=puppy.picture) }}" /><br />
+                                    {% endif %}
+                                    {{ form.picture(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="form-group{% if form.shelter.flags.required %} required{% endif %}">
+                                {{ form.shelter.label(class="col-sm-3 control-label") }}
+                                <div class="col-sm-9">
+                                    {{ form.shelter(class="form-control") }}
+                                    {{ form.csrf_token }}
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Puppy Info</button>&nbsp;<a href="{{ url_for('home.siteAdmin', admin_area='puppies') }}" class="btn btn-default">Cancel</a></span>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+{% block footextra %}
+<script src="{{ url_for('static', filename='assets/js/typeahead.bundle.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+var breed_choices = {{ breed_choices|safe }};
+
+var breed_choices = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: breed_choices
+});
+
+$('#breed').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+    },
+    {
+        name: 'breeds',
+        source: breed_choices
+    }
+);
+
+$('.datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    orientation: 'bottom'
+});
+</script>
+<style>
+.twitter-typeahead {
+    width: 100%;
+}
+
+.tt-menu {
+    background-color: #fff;
+    border: 1px solid #b6b6b6;
+    width: 100%;
+    text-align: left;
+    padding: 5px;
+}
+
+.form-control.datepicker {
+    width: 100%;
+    padding-left: 12px;
+}
+</style>
+{% endblock %}

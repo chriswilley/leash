@@ -1,0 +1,170 @@
+.site-wrapper {
+  padding-top: 50px; }
+
+.navbar {
+  border: 0;
+  padding-left: 10px;
+  padding-right: 10px; }
+  .navbar-inverse {
+    background-color: #5d4037;
+    color: #ffffff; }
+    .navbar-inverse a, .navbar-inverse .navbar-nav > li > a {
+      color: #ffffff; }
+      .navbar-inverse a:hover, .navbar-inverse a:active, .navbar-inverse a:focus, .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:active, .navbar-inverse .navbar-nav > li > a:focus {
+        color: #ff9800;
+        text-decoration: none; }
+    .navbar-inverse .navbar-brand {
+      color: #ffffff; }
+    .navbar-inverse.admin {
+      background-color: #212121; }
+  .navbar > .active > a {
+    background-color: #795548; }
+  .navbar-nav > li > a {
+    padding-top: 5px;
+    padding-bottom: 5px; }
+
+.udacity-plug {
+  padding-top: 10px; }
+
+.jumbotron {
+  background: #795548;
+  margin-bottom: 0;
+  border-bottom: 1px solid #5d4037; }
+  .jumbotron h1, .jumbotron .jumbotron .h1 {
+    color: #ff9800; }
+  .jumbotron p {
+    color: #ffffff; }
+  .jumbotron .btn-primary {
+    background: #d7ccc8;
+    color: #727272;
+    border: 1px solid #5d4037; }
+    .jumbotron .btn-primary:hover {
+      background-color: #ff9800;
+      color: #ffffff;
+      border: 1px solid #5d4037; }
+
+.puppysplash {
+  background-image: url("../static/img/puppy-splash.jpeg");
+  background-position: 50% 70%;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: inline-block;
+  min-height: 500px;
+  margin-left: 0;
+  margin-right: 0; }
+
+.sidebar {
+  background-color: #d7ccc8;
+  border-right: 1px solid #b6b6b6; }
+  .sidebar.admin {
+    background-color: #212121;
+    color: #ffffff;
+    border-right: 1px solid #212121; }
+
+.nav-sidebar.admin > li > a {
+  background-color: #212121;
+  color: #ffffff; }
+  .nav-sidebar.admin > li > a:hover, .nav-sidebar.admin > li > a:focus {
+    background-color: #ffffff;
+    color: #ff9800; }
+.nav-sidebar.admin > .active a {
+  background-color: #ff9800;
+  color: #ffffff; }
+  .nav-sidebar.admin > .active a:hover, .nav-sidebar.admin > .active a:focus {
+    background-color: #ff9800;
+    color: #ffffff; }
+
+a {
+  color: #795548; }
+  a:hover, a:active, a:focus {
+    color: #5d4037; }
+
+blockquote small:before {
+  content: None; }
+
+.placeholder {
+  position: relative; }
+  .placeholder:hover .puppy-overlay {
+    visibility: visible;
+    cursor: default;
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.8); }
+  .placeholder img {
+    border-radius: 0; }
+
+.puppy-overlay {
+  visibility: hidden;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background: rgba(255, 255, 255, 0);
+  transition: background, opacity 350ms ease-in; }
+  .puppy-overlay span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    width: 100%;
+    margin: auto;
+    left: -15px;
+    font-size: 5rem; }
+    .puppy-overlay span i:hover {
+      cursor: pointer; }
+
+.btn-primary {
+  background-color: #ff9800;
+  border: 1px solid #d7ccc8; }
+  .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #795548;
+    border: 1px solid #d7ccc8;
+    border-color: #d7ccc8; }
+
+.btn-default {
+  border: 1px solid #d7ccc8; }
+  .btn-default:hover, .btn-default:active, .btn-default:focus {
+    background-color: #b6b6b6;
+    border: 1px solid #d7ccc8; }
+  .btn-default-table {
+    color: #212121;
+    background-color: #ffffff;
+    border: 1px solid #d7ccc8; }
+    .btn-default-table:hover, .btn-default-table:active, .btn-default-table:focus {
+      background-color: #ff9800;
+      color: #ffffff;
+      border: 1px solid #d7ccc8; }
+
+.table-hover > tbody > tr > td {
+  cursor: pointer; }
+
+.tipspan {
+  position: relative;
+  width: 100%;
+  display: block; }
+
+.pagination > li > a {
+  color: #212121;
+  background-color: #ffffff;
+  border: 1px solid #d7ccc8; }
+  .pagination > li > a:hover, .pagination > li > a:active, .pagination > li > a:focus {
+    background-color: #ff9800;
+    color: #ffffff;
+    border: 1px solid #d7ccc8; }
+.pagination > .active > a {
+  color: #ffffff;
+  background-color: #ff9800;
+  border: 1px solid #d7ccc8; }
+  .pagination > .active > a:hover, .pagination > .active > a:active, .pagination > .active > a:focus {
+    background-color: #ff9800;
+    border: 1px solid #d7ccc8; }
+
+.form-group.required .control-label:after {
+  content: " *";
+  font-size: 1.5rem;
+  color: red; }
+
+/*# sourceMappingURL=app.css.map */

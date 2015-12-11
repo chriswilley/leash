@@ -1,0 +1,226 @@
+$colorDarkPrimary: #5d4037;
+$colorLightText: #ffffff;
+$colorPrimary: #795548;
+$colorLightPrimary: #d7ccc8;
+$colorAccent: #ff9800;
+$colorPrimaryText: #212121;
+$colorSecondaryText: #727272;
+$colorDivider: #b6b6b6;
+
+
+.site-wrapper {
+    padding-top: 50px;
+}
+
+.navbar {
+    border: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    &-inverse {
+        background-color: $colorDarkPrimary;
+        color: $colorLightText;
+        & a, .navbar-nav > li > a {
+            color: $colorLightText;
+            &:hover, &:active, &:focus {
+                color: $colorAccent;
+                text-decoration: none;
+            }
+        }
+        & .navbar-brand {
+            color: $colorLightText;
+        }
+        &.admin {
+            background-color: $colorPrimaryText;
+        }
+    }
+    & > .active > a {
+        background-color: #795548;
+    }
+    &-nav > li > a {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.udacity-plug {
+    padding-top: 10px;
+}
+
+.jumbotron {
+    background: $colorPrimary;
+    margin-bottom: 0;
+    border-bottom: 1px solid $colorDarkPrimary;
+    & h1, .jumbotron .h1 {
+        color: $colorAccent;
+    }
+    & p {
+        color: $colorLightText;
+    }
+    & .btn-primary {
+        background: $colorLightPrimary;
+        color: $colorSecondaryText;
+        border: 1px solid $colorDarkPrimary;
+        &:hover {
+            background-color: $colorAccent;
+            color: $colorLightText;
+            border: 1px solid $colorDarkPrimary;
+        }
+    }
+}
+
+.puppysplash {
+    background-image: url('../static/img/puppy-splash.jpeg');
+    background-position: 50% 70%;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: inline-block;
+    min-height: 500px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.sidebar {
+    background-color: $colorLightPrimary;
+    border-right: 1px solid $colorDivider;
+    &.admin {
+        background-color: $colorPrimaryText;
+        color: $colorLightText;
+        border-right: 1px solid $colorPrimaryText;
+    }
+}
+
+.nav-sidebar.admin {
+    & > li > a {
+        background-color: $colorPrimaryText;
+        color: $colorLightText;
+        &:hover, &:focus {
+            background-color: $colorLightText;
+            color: $colorAccent;
+        }
+    }
+    & > .active a {
+        background-color: $colorAccent;
+        color: $colorLightText;
+        &:hover, &:focus {
+            background-color: $colorAccent;
+            color: $colorLightText;
+        }
+    }
+}
+
+a {
+    color: $colorPrimary;
+    &:hover, &:active, &:focus {
+        color: $colorDarkPrimary;
+    }
+}
+
+blockquote small:before {
+    content: None;
+}
+
+.placeholder {
+    position: relative;
+    &:hover .puppy-overlay {
+        visibility: visible;
+        cursor: default;
+        opacity: 1;
+        background: rgba(255,255,255,0.8);
+    }
+    & img {
+        border-radius: 0;
+    }
+}
+
+.puppy-overlay {
+    visibility: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    background: rgba(255,255,255,0);
+    transition: background, opacity 350ms ease-in;
+    & span {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        width: 100%;
+        margin: auto;
+        left: -15px;
+        font-size: 5rem;
+        & i:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.btn-primary {
+    background-color: $colorAccent;
+    border: 1px solid $colorLightPrimary;
+    &:hover, &:active, &:focus {
+        background-color: $colorPrimary;
+        border: 1px solid $colorLightPrimary;
+        border-color: $colorLightPrimary;
+    }
+}
+
+.btn-default {
+    border: 1px solid $colorLightPrimary;
+    &:hover, &:active, &:focus {
+        background-color: $colorDivider;
+        border: 1px solid $colorLightPrimary;
+    }
+    &-table {
+        color: $colorPrimaryText;
+        background-color: $colorLightText;
+        border: 1px solid $colorLightPrimary;
+        &:hover, &:active, &:focus {
+            background-color: $colorAccent;
+            color: $colorLightText;
+            border: 1px solid $colorLightPrimary;
+        }
+    }
+}
+
+.table-hover > tbody > tr > td {
+    cursor: pointer;
+}
+
+.tipspan {
+    position: relative;
+    width: 100%;
+    display: block;
+}
+
+.pagination {
+    & > li > a {
+        color: $colorPrimaryText;
+        background-color: $colorLightText;
+        border: 1px solid $colorLightPrimary;
+        &:hover, &:active, &:focus {
+            background-color: $colorAccent;
+            color: $colorLightText;
+            border: 1px solid $colorLightPrimary;
+        }
+    }
+    & > .active > a {
+        color: $colorLightText;
+        background-color: $colorAccent;
+        border: 1px solid $colorLightPrimary;
+        &:hover, &:active, &:focus {
+            background-color: $colorAccent;
+            border: 1px solid $colorLightPrimary;
+        }
+    }
+}
+
+.form-group.required .control-label:after {
+  content:" *";
+  font-size: 1.5rem;
+  color:red;
+}

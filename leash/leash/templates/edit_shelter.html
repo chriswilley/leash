@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Leash -- Add/Edit Shelter{% endblock %}
+
+{% block headextra %}
+<link href="{{ url_for('static', filename='cover.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block adminnavbar %}admin {% endblock %}
+
+{% block body %}
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                {% include 'message_alerts.html' %}
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+                            <h1 style="display: block;" class="text-center">{{ form_header }}</h1>
+                            <p>&nbsp;</p>
+                            {% include 'form_errors.html' %}
+                            <form class="form-horizontal" action="{{ form_action }}" method="POST">
+                                <div class="form-group{% if form.name.flags.required %} required{% endif %}">
+                                    {{ form.name.label(class="col-sm-3 control-label") }}
+                                    <div class="col-sm-9">
+                                        {{ form.name(class="form-control") }}
+                                    </div>
+                                </div>
+                                <div class="form-group{% if form.address.flags.required %} required{% endif %}">
+                                    {{ form.address.label(class="col-sm-3 control-label") }}
+                                    <div class="col-sm-9">
+                                        {{ form.address(class="form-control") }}
+                                    </div>
+                                </div>
+                                <div class="form-group{% if form.city.flags.required %} required{% endif %}">
+                                    {{ form.city.label(class="col-sm-3 control-label") }}
+                                    <div class="col-sm-9">
+                                        {{ form.city(class="form-control") }}
+                                    </div>
+                                </div>
+                                <div class="form-group{% if form.state.flags.required %} required{% endif %}">
+                                    {{ form.state.label(class="col-sm-3 control-label") }}
+                                    <div class="col-sm-9">
+                                        {{ form.state(class="form-control") }}
+                                    </div>
+                                </div>
+                                <div class="form-group{% if form.zip_code.flags.required %} required{% endif %}">
+                                    {{ form.zip_code.label(class="col-sm-3 control-label") }}
+                                    <div class="col-sm-9">
+                                        {{ form.zip_code(class="form-control") }}
+                                    </div>
+                                </div>
+                                <div class="form-group{% if form.website.flags.required %} required{% endif %}">
+                                    {{ form.website.label(class="col-sm-3 control-label") }}
+                                    <div class="col-sm-9">
+                                        {{ form.website(class="form-control") }}
+                                    </div>
+                                </div>
+                                <div class="form-group{% if form.email.flags.required %} required{% endif %}">
+                                    {{ form.email.label(class="col-sm-3 control-label") }}
+                                    <div class="col-sm-9">
+                                        {{ form.email(class="form-control") }}
+                                    </div>
+                                </div>
+                                <div class="form-group{% if form.max_puppies.flags.required %} required{% endif %}">
+                                    {{ form.max_puppies.label(class="col-sm-3 control-label") }}
+                                    <div class="col-sm-9">
+                                        {{ form.max_puppies(class="form-control") }}
+                                    </div>
+                                    {{ form.csrf_token }}
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Save Shelter Info</button>&nbsp;<a href="{{ url_for('home.siteAdmin', admin_area='shelters') }}" class="btn btn-default">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
