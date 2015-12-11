@@ -1,6 +1,6 @@
-# Where Should We Eat?
+# Leash
 
-This project sets up a restaurant listing website.
+This project sets up a puppy adoption site.
 
 
 ## Table of contents
