@@ -46,7 +46,6 @@ py-bcrypt==0.4
 pyOpenSSL==0.13
 pyasn1==0.1.9
 pyasn1-modules==0.0.8
-pycrypto==2.6.1
 pycurl==7.19.3
 pygobject==3.12.0
 pyserial==2.6
